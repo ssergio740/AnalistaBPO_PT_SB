@@ -35,6 +35,13 @@ async def procesar(solicitud: Solicitud):
         
         logger.info(f"Procesando solicitud {solicitud.solicitud_id} para {solicitud.compania}")
         
+        duplicate = await Casos_db.find_one({"compania": solicitud.compania, "solicitud_id": solicitud.solicitud_id})
+        if duplicate:
+            logger.warning(f"Solicitud duplicada: {solicitud.solicitud_id}")
+            raise HTTPException(
+                status_code=400,
+                detail=f"Solicitud con ID '{solicitud.solicitud_id}' de la empresa {solicitud.compania} ya ha sido procesada. Detalles: {duplicate}"
+            )
         # Ejecutar el agente para procesar la solicitud
         resultado_agente = await procesar_solicitud(
             empresa=empresa,
