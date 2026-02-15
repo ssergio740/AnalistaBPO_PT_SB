@@ -1,13 +1,19 @@
-from pymongo import MongoClient
-#iniciar mongodb "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="c:\data\db"
-database= "mongodb+srv://sesierrag:lqJhgCcj7nqsEYOG@cvsierrainnovate.gyzkx.mongodb.net/"
-cliente = MongoClient(database)
-db=cliente["CVSierraInnovate"]
-expedb = db.experience
-user_db = db.users
-edudb = db.education
-referdb = db.references
-lenguadb = db.lengua
-skillsdb = db.skills
-proyectdb = db.proyects
-puestosdb = db.puestos
+
+import config as config
+from pymongo import AsyncMongoClient
+
+
+database= config.settings.MONGO_URI
+cliente = AsyncMongoClient(database)
+
+db=cliente[config.settings.MONGO_DB_NAME]
+
+Empresas_db = db[config.settings.MONGO_EMPRESAS]
+Casos_db = db[config.settings.MONGO_CASOS]
+
+async def check_db():
+    try:
+        await cliente.admin.command('ping')
+        return "Conexión a MongoDB exitosa"
+    except Exception as e:
+        return f"Error en DB: {e}"

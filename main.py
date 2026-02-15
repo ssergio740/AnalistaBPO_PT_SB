@@ -1,10 +1,8 @@
 from fastapi import FastAPI
-from routers import users
-from routers import experiencia,puestos
-from routers import education,Skills,proyects,lengua,references,gemini
+from routers import solicitud
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(docs_url=None,redoc_url=None,openapi_url=None)
+app = FastAPI(title="API de Procesamiento de Solicitudes", version="1.0")
 origins = ["*"]
 
 app.add_middleware(
@@ -15,4 +13,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(users.router)
+app.include_router(solicitud.router)
