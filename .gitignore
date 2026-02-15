@@ -1,1 +1,6 @@
 .env
+db/__pycache__/client.cpython-312.pyc
+db/models/__pycache__/solcitud.cpython-312.pyc
+routers/__pycache__/solicitud.cpython-312.pyc
+services/__pycache__/agent.cpython-312.pyc
+services/tools/__pycache__/solicitud.cpython-312.pyc
