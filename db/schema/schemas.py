@@ -1,5 +1,5 @@
 def solicitud(solicitud):
-    
+    """Esquemas a usar para el envío de solicitudes y respuestas"""
     return {
         "compania": solicitud['compania'],
         "solicitud_id": solicitud['solicitud_id'],
@@ -7,6 +7,7 @@ def solicitud(solicitud):
     }
 
 def respuesta(respuesta):
+    """Es el formato de respuesta solicitado dentro del ejercicio"""
     return {
         "compania": respuesta['respuesta'],
         "solicitud_id": respuesta['solicitud_id'],

@@ -4,6 +4,8 @@ from datetime import datetime
 
 
 class Solicitud(BaseModel):
+
+    """Es el formato con el que se solicitó recibir la información"""
     compania: str = Field(
         ..., 
         examples=["GASES DEL ORINOCO"],
@@ -21,15 +23,17 @@ class Solicitud(BaseModel):
         description="Texto libre con la descripción del problema o solicitud"
     )
 
-# Alias para compatibilidad
+
 SolicitudInput = Solicitud
 
 class ServicioExternoConfig(BaseModel):
+    """Es la configuración para poderse comunicar con servicios externos de acuerdo como lo requiera la empresa"""
+
     requiere_externo: bool
     url: Optional[str]
 
 class EmpresaConfig(BaseModel):
-    # Usamos alias para que _id de Mongo no cause conflicto con id de Python
+    """ Represemta la información que se encuentra en la base de datos en MongoDB y que contiene las reglas por negocio"""
     id: Optional[str] = Field(alias="_id", default=None) 
     compania: str
     categorias: List[str]
@@ -37,11 +41,11 @@ class EmpresaConfig(BaseModel):
     delegaciones: Dict[str, str]
     servicio_prioridad_externo: ServicioExternoConfig
 
-    # Configuración para Pydantic v2
+    
     model_config = ConfigDict(populate_by_name=True)
 
 class RespuestaAgente(BaseModel):
-    """Respuesta procesada por el agente"""
+    """Respuesta procesada por el agente, es lo que se responderá al cliente después de procesar la solicitud."""
     solicitud_id: str
     compania: str
     categoria: str

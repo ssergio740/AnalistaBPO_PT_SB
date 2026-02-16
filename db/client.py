@@ -2,7 +2,7 @@
 import config as config
 from pymongo import AsyncMongoClient
 
-
+"""Conexión a la base de datos usando variables de entorno"""
 database= config.settings.MONGO_URI
 cliente = AsyncMongoClient(database)
 
@@ -12,6 +12,7 @@ Empresas_db = db[config.settings.MONGO_EMPRESAS]
 Casos_db = db[config.settings.MONGO_CASOS]
 
 async def check_db():
+    """Basicamemnte es un ping"""
     try:
         await cliente.admin.command('ping')
         return "Conexión a MongoDB exitosa"
