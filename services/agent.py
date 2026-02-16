@@ -2,7 +2,7 @@ import os
 import json
 from config import settings
 from langchain_google_genai import ChatGoogleGenerativeAI
-from services.tools.solicitud import guardar_caso_tool, buscar_casos_similares_tool
+from services.tools.solicitud import guardar_caso_tool
 from db.models.solcitud import EmpresaConfig
 
 os.environ["GOOGLE_API_KEY"] = settings.GOOGLE_API_KEY
