@@ -89,7 +89,7 @@ La API estará disponible en: `http://localhost:8000`
 
 ---
 
-## 📚 Uso de la API
+## Uso de la API
 
 ### Endpoint Principal
 
@@ -298,3 +298,4 @@ Para problemas o preguntas, revisa:
 - Documentación de Gemini: https://ai.google.dev/docs
 
 
+Muchas gracias por su atención
